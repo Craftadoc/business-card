@@ -1,0 +1,190 @@
+% !TEX TS-program = xelatex
+\documentclass[10pt,oneside,final]{article}
+
+% set all margins to 0 and set business card size
+\usepackage[paperwidth=55mm,paperheight=85mm,margin=0cm,noheadfoot]{geometry}
+\setlength{\baselineskip}{0cm}
+\setlength{\topskip}{0pt}
+
+\usepackage{parskip}         % remove paragraph indents
+\usepackage{fontspec}        % load external fonts
+\usepackage{tikz}            % drawing
+\usepackage{fontawesome5}     % icon font
+\usepackage{xcolor}          % more colour options
+\usepackage[nolinks]{qrcode} % create QR codes
+
+% load and configure tikz libraries
+\usetikzlibrary{matrix,calc,positioning}
+
+% load external font
+\setmainfont{Fira Sans}
+\setsansfont{Fira Sans}
+\setmonofont{Fira Mono}
+
+% define some lengths for internal spacing
+\newlength{\seplinewidth}    \setlength{\seplinewidth}{2cm}
+\newlength{\seplineheight}   \setlength{\seplineheight}{1pt}
+\newlength{\seplinedistance} \setlength{\seplinedistance}{0.3cm}
+
+% colour options
+\definecolor{seplinecolour}{HTML}
+{357f2d} %<{type: "reference", id: "seplinecolour"}>
+\definecolor{iconcolour}{HTML}
+{2f3142} %<{type: "reference", id: "iconcolour"}>
+\definecolor{textcolour}{HTML}
+{2f3142} %<{type: "reference", id: "textcolour"}>
+\definecolor{jobtitlecolour}{HTML}
+{474a65} %<{type: "reference", id: "jobtitlecolour"}>
+
+% define some lengths for internal spacing
+\newlength{\qrheight}  \setlength{\qrheight}{1in}
+\newlength{\edgemargin} \setlength{\edgemargin}{0.2in}
+\newlength{\logowidth}  \setlength{\logowidth}{1in}
+
+% define colours
+\definecolor{bordercolour}{HTML}
+{357f2d} %<{type: "reference", id: "bordercolour"}>
+
+% change global colour
+\makeatletter
+\newcommand{\globalcolor}[1]{%
+  \color{#1}\global\let\default@color\current@color
+}
+\makeatother
+\AtBeginDocument{\globalcolor{textcolour}}
+
+\newcommand{\sloganLine}[1]{
+    \node[font=\large]{#1}; \\
+}
+
+\newcommand{\hide}[1]
+{}
+
+\begin{document}
+  \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{center}
+    \begin{tikzpicture}
+    % name
+    \matrix[every node/.style={anchor=center,font=\huge},anchor=center] (name) {
+        %<{description: "First name", type: "text", maxLength: 12, inputValue: "John"}
+            \node{John}; \\
+        %>
+        %<{description: "Last name", type: "text", maxLength: 12, inputValue: "Doe"}
+            \node{Doe}; \\
+        %>
+        \node{\color{jobtitlecolour}\normalsize\textit
+        %<{description: "(Job?) title", type: "text", maxLength: 31, inputValue: "Job title"}
+            {Job title}
+        %>
+        }; \\
+      };
+      % sep line 1
+      \node[below=\seplinedistance of name] (hl1) {};
+      \draw[line width=\seplineheight,color=seplinecolour] (hl1)++(-\seplinewidth/2,0) -- ++(\seplinewidth,0);
+      % contact info
+      \matrix [below=\seplinedistance of hl1,%
+               column 1/.style={anchor=center,color=iconcolour},%
+               column 2/.style={anchor=west}] (contact){
+        \node{\faGlobe}; & \node
+        %<{description: "Website", type: "text", maxLength: 22, inputValue: "johndoe.com"}
+            {johndoe.com};
+        %>
+        \\
+        \node{\faEnvelope}; &\node
+        %<{description: "Email address", type: "text", maxLength: 22, inputValue: "me@johndoe.com"}
+            {me@johndoe.com};
+        %>
+        \\
+        \node{\faPhone}; &\node
+        %<{description: "Phone number", type: "phonenumber", inputValue: "+1 781 555 1212"}
+            {+1 781 555 1212};
+        %>
+        \\
+        %<{description: "Optional information", type: "list", minChildren: 0, maxChildren: 2}
+            %<{description: "", type: "group"}
+                %<{description: "Icon", type: "faicon", inputValue: "\\faGithub", inputValueIcon: "FaGithub"}
+                    \node{\faGithub};
+                %>
+                %<{description: "Text", type: "text", maxLength: 22, inputValue: "johndoe"}
+                    &\node{johndoe}; \\
+                %>
+            %>
+        %>
+      };
+      % sep line 2
+      \node[below=\seplinedistance of contact] (hl2) {};
+      \draw[line width=\seplineheight,color=seplinecolour] (hl2)++(-\seplinewidth/2,0) -- ++(\seplinewidth,0);
+      % interests
+      \matrix [below=\seplinedistance of hl2,
+        every node/.style={anchor=center,font=\LARGE}]
+        (interests) {
+        %<{description: "Interests icons", type: "list", minChildren: 0, maxChildren: 5}
+            %<{description: "Icon", type: "faicon", inputValue: "\\faCode", inputValueIcon: "FaCode"}
+                \node{\faCode}; &
+            %>
+            %<{description: "Icon", type: "faicon", inputValue: "\\faCoffee", inputValueIcon: "FaCoffee"}
+                \node{\faCoffee}; &
+            %>
+            %<{description: "Icon", type: "faicon", inputValue: "\\faLock", inputValueIcon: "FaLock"}
+                \node{\faLock}; &
+            %>
+            %<{description: "Icon", type: "faicon", inputValue: "\\faWrench", inputValueIcon: "FaWrench"}
+                \node{\faWrench}; &
+            %>
+            %<{description: "Icon", type: "faicon", inputValue: "\\faCameraRetro", inputValueIcon: "FaCameraRetro"}
+                \node{\faCameraRetro}; &
+            %>
+        %>
+        \\
+      }; 
+    \end{tikzpicture}
+  \end{center}
+  \vspace*{\fill}
+
+  \newpage
+
+    \thispagestyle{empty}
+  \vspace*{\fill}
+  \begin{tikzpicture}[remember picture,overlay,inner sep=0pt]
+    \draw[fill=bordercolour!30,draw=bordercolour] (current page.center) ++(-\paperwidth/2+\edgemargin,\paperheight/2-\edgemargin) rectangle ++(\paperwidth-2*\edgemargin,-\paperheight+2*\edgemargin);
+    % logo
+    \draw (current page.center) ++(0,\paperheight/2-\edgemargin-\paperwidth/2+\edgemargin) node (helper logo) {};
+    \begin{scope}
+    \clip (helper logo) circle (\logowidth/2);
+    \node[anchor=center] at (helper logo) {\includegraphics[width=\logowidth]
+    %<{description: "Profile picture / Logo", type: "image", accept: "image/png, image/jpeg", inputValue: "mountain"}
+        {mountain}
+    %>
+    };
+    \end{scope}
+    
+    \matrix[below=1in of helper logo, every node/.style={anchor=center,font=\huge},anchor=center, row sep=5pt] (company) {
+    %<{description: "Back text lines", type: "list", minChildren: 1, maxChildren: 3}
+        %<{description: "Company", type: "text", maxLength: 12, inputValue: "Doe"}
+            \node{Doe}; \\
+        %>
+        %<{description: "Company", type: "text", maxLength: 12, inputValue: "Enterprises"}
+            \node{Enterprises}; \\
+        %>
+    %>
+    %<{type: "list", description: "Slogan lines"}
+        %<{description: "Slogan line", type: "text", maxLength: 19, escapeLatex: false, inputValue: "You do,"}
+            \sloganLine{You do,}; \\
+        %>
+        %<{description: "Slogan line", type: "text", maxLength: 19, escapeLatex: false, inputValue: "we Doe"}
+            \sloganLine{we Doe}; \\
+        %>
+    %>
+    };
+  \end{tikzpicture}
+  \vspace*{\fill}
+\end{document}
+
+%<{type: "group", description: "Colors (optional)"}
+  %<{type: "color", description: "Separation line color", initialColor: "#357f2d", inputValue: "357f2d", id: "seplinecolour"}>
+  %<{type: "color", description: "Icon color", initialColor: "#2f3142", inputValue: "2f3142", id: "iconcolour"}>
+  %<{type: "color", description: "Text color", initialColor: "#2f3142", inputValue: "2f3142", id: "textcolour"}>
+  %<{type: "color", description: "Job title color", initialColor: "#474a65", inputValue: "474a65", id: "jobtitlecolour"}>
+  %<{type: "color", description: "Border color", initialColor: "#357f2d", inputValue: "357f2d", id: "bordercolour"}>
+%>

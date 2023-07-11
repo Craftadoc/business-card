@@ -1,3 +1,35 @@
+# Doe's Business Card Template
+
+A [Craftadoc](https://craftadoc.com) template. (Using LaTeX.)
+
+Easily create a beautiful business card by using Doe's Business Card template. The colors can be changed.
+
+### How do I use this?
+
+#### Option 1:
+
+Directly use the template in your browser using Craftadoc [here!](https://app.craftadoc.com/template/overview/64ad3d48ed7e4c2be8ad8bb0) And fill in the template using the automatically generated UI. This is the easiest option.
+
+#### Option 2:
+
+Open the source code in Overleaf: visit [the template page](https://app.craftadoc.com/template/overview/64ad3d48ed7e4c2be8ad8bb0), select the gear icon in the top right and select `Open in Overleaf`.
+
+#### Option 3:
+
+Clone this repository and use your favorite latex compiler locally. (This template uses XeLatex.)
+
+## Example:
+![does-business-card-example](./example.png)
+
+## Source:
+https://github.com/opieters/business-card
+
+<br/>
+
+---
+
+# ORIGINAL README FOR REFERENCE:
+
 Business Card
 =============
 
