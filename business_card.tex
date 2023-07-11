@@ -168,13 +168,8 @@
             \node{Enterprises}; \\
         %>
     %>
-    %<{type: "list", description: "Slogan lines"}
-        %<{description: "Slogan line", type: "text", maxLength: 19, escapeLatex: false, inputValue: "You do,"}
-            \sloganLine{You do,}; \\
-        %>
-        %<{description: "Slogan line", type: "text", maxLength: 19, escapeLatex: false, inputValue: "we Doe"}
-            \sloganLine{we Doe}; \\
-        %>
+    %<{description: "Slogan", type: "text", maxLength: 19, escapeLatex: false, inputValue: "You do, we Doe"}
+        \sloganLine{You do, we Doe}
     %>
     };
   \end{tikzpicture}
@@ -182,9 +177,11 @@
 \end{document}
 
 %<{type: "group", description: "Colors (optional)"}
-  %<{type: "color", description: "Separation line color", initialColor: "#357f2d", inputValue: "357f2d", id: "seplinecolour"}>
-  %<{type: "color", description: "Icon color", initialColor: "#2f3142", inputValue: "2f3142", id: "iconcolour"}>
-  %<{type: "color", description: "Text color", initialColor: "#2f3142", inputValue: "2f3142", id: "textcolour"}>
-  %<{type: "color", description: "Job title color", initialColor: "#474a65", inputValue: "474a65", id: "jobtitlecolour"}>
-  %<{type: "color", description: "Border color", initialColor: "#357f2d", inputValue: "357f2d", id: "bordercolour"}>
+\hide{
+    %<{type: "color", description: "Separation line color", initialColor: "#357f2d", inputValue: "357f2d", id: "seplinecolour"}>
+    %<{type: "color", description: "Icon color", initialColor: "#2f3142", inputValue: "2f3142", id: "iconcolour"}>
+    %<{type: "color", description: "Text color", initialColor: "#2f3142", inputValue: "2f3142", id: "textcolour"}>
+    %<{type: "color", description: "Job title color", initialColor: "#474a65", inputValue: "474a65", id: "jobtitlecolour"}>
+    %<{type: "color", description: "Border color", initialColor: "#357f2d", inputValue: "357f2d", id: "bordercolour"}>
+}
 %>
